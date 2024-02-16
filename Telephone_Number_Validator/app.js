@@ -2,6 +2,9 @@ const checkBtn = document.getElementById("check-btn")
 const clearBtn = document.getElementById("clear-btn")
 const userInput = document.getElementById("user-input")
 const resultsDiv = document.getElementById("results-div")
+const results = document.getElementById("results")
+const container = document.getElementById("container")
+let n = 0
 
 let A = [
     '1 555-555-5555',
@@ -39,21 +42,25 @@ const checkValidNumber = input => {
         pTag.innerHTML = `Invalid US number: ${input}`
     )
 
+    if (n%2 == 1) {
+        pTag.style.backgroundColor = 'rgba(48, 48, 48, 0.3)'
+    }
     resultsDiv.appendChild(pTag)
+    n++
 }
 
 checkBtn.addEventListener("click", () => {
-    // checkValidNumber(userInput.value)
-    // console.log(userInput.value)
-
-    A.forEach(i => {
-        console.log(checkValidNumber(i))
-    })
+    checkValidNumber(userInput.value)
+    container.classList.remove("move1")
+    results.classList.remove("move2")
 }
 )
 
 clearBtn.addEventListener('click', () => {
     resultsDiv.textContent = '';
+    container.classList.add("move1")
+    results.classList.add("move2")
+    n = 0
   });
 
 
