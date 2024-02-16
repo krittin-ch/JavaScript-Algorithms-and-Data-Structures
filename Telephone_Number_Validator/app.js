@@ -1,7 +1,7 @@
 const checkBtn = document.getElementById("check-btn")
 const clearBtn = document.getElementById("clear-btn")
 const userInput = document.getElementById("user-input")
-const resultDiv = document.getElementById("result-div")
+const resultsDiv = document.getElementById("results-div")
 
 let A = [
     '1 555-555-5555',
@@ -21,7 +21,7 @@ const checkValidNumber = input => {
 
     const countryCode = '^(1\\s?)?'
     const areaCode = '(\\([0-9]{3}\\)|[0-9]{3})'
-    const spaceDash = '(-\\s?)?'
+    const spaceDash = '(-?\\s?)?'
     const num1 = '[0-9]{3}'
     const num2 = '[0-9]{4}$'
     const phoneRegEx = new RegExp(`${countryCode}${areaCode}${spaceDash}${num1}${spaceDash}${num2}`)
@@ -39,16 +39,22 @@ const checkValidNumber = input => {
         pTag.innerHTML = `Invalid US number: ${input}`
     )
 
-    resultDiv.appendChild(pTag)
+    resultsDiv.appendChild(pTag)
 }
 
 checkBtn.addEventListener("click", () => {
-    checkValidNumber(userInput.value)
-    console.log(userInput.value)
+    // checkValidNumber(userInput.value)
+    // console.log(userInput.value)
+
+    A.forEach(i => {
+        console.log(checkValidNumber(i))
+    })
 }
 )
 
-
+clearBtn.addEventListener('click', () => {
+    resultsDiv.textContent = '';
+  });
 
 
 
