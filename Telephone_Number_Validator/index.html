@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
+    <div id="container" class="container move1">
         <h1>US Phone Number Validator</h1>
         <div class="box">
             <h3>Enter a Phone Number:</h3>
@@ -18,8 +18,11 @@
                     <button id="clear-btn">Clear</button>
                 </div>
             </div>
-            <div id="results-div"></div>
         </div>
+    </div>
+    <div id="results" class="results move2">
+        <div class="bar">Results</div>
+        <div id="results-div"></div>
     </div>
     <script src="app.js"></script>
 </body>
