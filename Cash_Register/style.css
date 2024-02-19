@@ -1,0 +1,68 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    max-width: 100vw;
+    height: 100vh;
+    background-color: rgb(182, 243, 243);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 800px;
+    height: 400px;
+    background-color: rgb(246, 219, 243);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.status {
+    width: 300px;
+    height: 300px;
+    background-color: beige;
+}
+
+.cashier {
+    width: 400px;
+    height: 300px;
+    background-color: #81ebcd;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.purchase {
+    width: 100%;
+    height: 100px;
+    background-color: aquamarine;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#cash-drawer-display {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#change-due {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    line-height: 25px;
+}

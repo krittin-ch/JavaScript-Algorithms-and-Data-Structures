@@ -46,12 +46,11 @@ function checkCash() {
   let total = cid.map(entry => entry[1]).reduce((acc, val) => acc + val, 0).toFixed(2)
   let cash = parseFloat(cashInput.value)
 
-  console.log(total)
   if (cash < price) {
     updateUI() 
     alert('Customer does not have enough money to purchase the item')
     return
-  } else if (cash > total) {
+  } else if (cash - price > total) {
     updateUI() 
     return `<p>Status: INSUFFICIENT_FUNDS</p>`
     
@@ -76,14 +75,17 @@ function checkCash() {
     cidCopy[i] = cid[i]
   }
   
-  cash -= price
-  cash.toFixed(2)
-  for (i=0; i<=denominations.length; i++) {
-    while (cash >= denominations[i] && cid[8-i][1]  >= denominations[i]) {
+  cash -= price;
+  cash = parseFloat(cash.toFixed(2))
+  
+  for (let i = 0; i < denominations.length; i++) {
+    while (cash >= denominations[i] && cid[8 - i][1] >= denominations[i]) {
       cash -= denominations[i]
-      cash = cash.toFixed(2)
-      change[8-i][1] += denominations[i]
-      cid[8-i][1] -= denominations[i]
+      change[8 - i][1] += denominations[i]
+      cid[8 - i][1] -= denominations[i]
+      cash = parseFloat(cash.toFixed(2))
+      change[8 - i][1] = parseFloat(change[8 - i][1].toFixed(2))
+      cid[8 - i][1] = parseFloat(cid[8 - i][1].toFixed(2))
     }
   }
 
@@ -91,9 +93,17 @@ function checkCash() {
     cid = cidCopy
     updateUI() 
     return `<p>Status: INSUFFICIENT_FUNDS</p>`
-  } else if (cashInput.value === price) {
+  } else if (cashInput.value == price) {
     updateUI()
     return '<p>No change due - customer paid with exact cash</p>'
+  } else if (change.map(e => e[1]).reduce((acc, curr) => acc + curr, 0).toFixed(2) == total) {
+    let cashHTML = `<p>Status: CLOSED</p>`
+    for (let i = change.length - 1; i >= 0; i--) {
+      if (change[i][1] !== 0) {
+        cashHTML += `<p>${change[i  ][0]}: $${change[i][1]}</p>`;
+      }
+    }
+    return cashHTML
   } else {
     updateUI()
     let cashHTML = `<p>Status: OPEN</p>`
